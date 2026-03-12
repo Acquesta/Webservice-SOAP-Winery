@@ -26,6 +26,18 @@ public interface WineStockService {
 
     /**
      * 
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getMenu", targetNamespace = "http://winery.fiap.com.br/", className = "br.com.fiap.winery.GetMenu")
+    @ResponseWrapper(localName = "getMenuResponse", targetNamespace = "http://winery.fiap.com.br/", className = "br.com.fiap.winery.GetMenuResponse")
+    @Action(input = "http://winery.fiap.com.br/WineStockService/getMenuRequest", output = "http://winery.fiap.com.br/WineStockService/getMenuResponse")
+    public String getMenu();
+
+    /**
+     * 
      * @param arg0
      * @param arg1
      * @return
@@ -41,17 +53,5 @@ public interface WineStockService {
         String arg0,
         @WebParam(name = "arg1", targetNamespace = "")
         int arg1);
-
-    /**
-     * 
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getMenu", targetNamespace = "http://winery.fiap.com.br/", className = "br.com.fiap.winery.GetMenu")
-    @ResponseWrapper(localName = "getMenuResponse", targetNamespace = "http://winery.fiap.com.br/", className = "br.com.fiap.winery.GetMenuResponse")
-    @Action(input = "http://winery.fiap.com.br/WineStockService/getMenuRequest", output = "http://winery.fiap.com.br/WineStockService/getMenuResponse")
-    public String getMenu();
 
 }

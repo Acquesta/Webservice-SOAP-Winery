@@ -13,16 +13,31 @@ public class ApplicationClient2 {
         final String TARGET = "http://winery.fiap.com.br/";
         final String NAME = "WineStockServiceImplementationService";
 
-            URL url = new URL(WSDL);
+        final String WSDL2 = "http://localhost:8086/WineWarningService?wsdl";
+        final String TARGET2 = "http://winery.fiap.com.br/";
+        final String NAME2 = "WineWarningServiceImplementationService";
 
-            QName qName = new QName(TARGET, NAME);
+        URL url = new URL(WSDL);
 
-            Service service = Service.create(url, qName);
+        URL url2 = new URL(WSDL2);
 
-            WineStockService wineStockService = service.getPort(WineStockService.class);
+        QName qName2 = new QName(TARGET2, NAME2);
 
-            String order = wineStockService.placeOrder("Vinho Tinto Fino", 2);
+        QName qName = new QName(TARGET, NAME);
 
-            System.out.println(order);
+        Service service = Service.create(url, qName);
+        Service service2 = Service.create(url2, qName2);
+
+
+        WineStockService wineStockService = service.getPort(WineStockService.class);
+        WineWarningService wineWarningService = service2.getPort(WineWarningService.class);
+
+        String order = wineStockService.placeOrder("Vinho Tinto Fino", 2);
+
+        System.out.println(order);
+
+        String warn = wineWarningService.sendWarn();
+
+        System.out.println(warn);
     }
 }
